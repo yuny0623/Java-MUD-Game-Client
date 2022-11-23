@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class MainClient{
     String ip;
@@ -14,9 +15,12 @@ public class MainClient{
     BufferedReader in;
     String str;
     String nickname;
+    Scanner sc;
 
     public MainClient(){
         try {
+            sc = new Scanner(System.in);
+
             InetAddress ia = InetAddress.getLocalHost();
             String ipStr = ia.toString();
             ip = ipStr.substring(ipStr.indexOf("/") + 1);
@@ -47,15 +51,18 @@ public class MainClient{
     public void run(){
         while(true){
             try {
-                str = in.readLine();
+                String clientInput = sc.nextLine();
+                if(clientInput == null){
+
+                }
+                str = in.readLine();     // 서버로부터 정보 전달받음
                 if (str == null) {
                     continue;
                 }
-
                 /*
                     parsing str logic
                  */
-                System.out.println(str);
+                System.out.println(str); // 사용자에게 정보 보여줌.
             }catch(IOException e){
                 e.printStackTrace();
             }
