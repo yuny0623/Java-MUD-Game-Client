@@ -1,11 +1,13 @@
 package org.client;
 
 import org.client.Utils.ClientConfig;
+import org.client.Utils.JsonGenerator;
 
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MainClient{
@@ -14,9 +16,10 @@ public class MainClient{
     PrintWriter out;
     BufferedReader in;
     BufferedReader br;
-    String str;
-    String input;
-    Scanner sc;
+    String strIn;
+    String json;
+
+    String clientInput;
 
     public MainClient(){
         try {
@@ -37,7 +40,6 @@ public class MainClient{
     public void initNet(String ip, int port){
         try{
             socket = new Socket(ip, port);
-
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         }catch(UnknownHostException e){
@@ -45,18 +47,28 @@ public class MainClient{
         }catch(IOException e){
             System.out.println("Connection failed");
         }
-
         run();
     }
 
     public void run(){
         while(true){
             try {
-                input = br.readLine();
+                strIn = in.readLine();
+                if(strIn != null){
+                    System.out.println(strIn);
+                }
+                clientInput = br.readLine();
+                if(clientInput != null){
+                    json = JsonGenerator.generateJson(clientInput);
+                    if(json != null) {
+                        out.println(json);
+                    }else{
+                        System.out.println("Invalid Input!");
+                    }
+                }
             }catch(IOException e){
                 e.printStackTrace();
             }
-            out.println(input);
         }
     }
 }
