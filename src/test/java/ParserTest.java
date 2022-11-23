@@ -5,7 +5,7 @@ import org.junit.Test;
 public class ParserTest {
 
     @Test
-    public void json파서테스트(){
+    public void json_parser_test(){
         // given
         JSONObject inner = new JSONObject();
         inner.put("name","razlo");

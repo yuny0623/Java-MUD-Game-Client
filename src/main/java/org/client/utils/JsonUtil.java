@@ -1,8 +1,8 @@
-package org.client.Utils;
+package org.client.utils;
 
 import org.json.simple.JSONObject;
 
-public class JsonGenerator {
+public class JsonUtil {
     public static String generateJson(String action){
         JSONObject jsonObject = new JSONObject();
         String[] inputs = action.split(" ");
@@ -11,7 +11,6 @@ public class JsonGenerator {
         switch(command){
             case "move":
                 if(inputs.length != 3){
-                    result = null;
                     break;
                 }
                 String x_val = inputs[1];
@@ -35,7 +34,6 @@ public class JsonGenerator {
                 break;
             case "chat":
                 if(inputs.length != 3){
-                    result = null;
                     break;
                 }
                 String opponent = inputs[1];
@@ -49,8 +47,6 @@ public class JsonGenerator {
                 jsonObject.put("command","bot");
                 result = jsonObject.toJSONString();
                 break;
-            default:
-                result = null;
         }
         return result;
     }

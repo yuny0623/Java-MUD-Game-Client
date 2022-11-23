@@ -1,14 +1,12 @@
-package org.client.Client;
+package org.client.client;
 
-import org.client.Utils.ClientConfig;
-import org.client.Utils.JsonGenerator;
+import org.client.utils.ClientConfig;
+import org.client.utils.JsonUtil;
 
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.sql.SQLOutput;
-import java.util.Scanner;
 
 public class MainClient{
     String ip;
@@ -33,7 +31,14 @@ public class MainClient{
     }
 
     public void start(){
-        System.out.println("Starting client...");
+        System.out.println("Starting Client...");
+        System.out.println("***********Command list***********");
+        System.out.println("move x y");
+        System.out.println("attack");
+        System.out.println("monsters");
+        System.out.println("users");
+        System.out.println("chat <username> <content>");
+        System.out.println("bot");
         initNet(ip, ClientConfig.TCP_CONNECTION_DEFAULT_PORT);
     }
 
@@ -53,21 +58,24 @@ public class MainClient{
     public void run(){
         while(true){
             try {
-                strIn = in.readLine();
+                strIn = in.readLine(); // 서버에서 받음.
+                System.out.println("strIn: " + strIn);
                 if(strIn != null){
                     System.out.println(strIn);
                 }
+                System.out.print("Input command:");
                 clientInput = br.readLine();
                 if(clientInput != null){
-                    json = JsonGenerator.generateJson(clientInput);
-                    if(json != null) {
+                    json = JsonUtil.generateJson(clientInput);
+                    if(json.isBlank()||json.isEmpty()) {
                         System.out.println(json);
                         out.println(json);
                     }else{
                         System.out.println("Invalid Input!");
                     }
                 }
-            }catch(IOException e){
+            }catch(Exception e){
+                System.out.println(e.getMessage());
                 e.printStackTrace();
             }
         }

@@ -1,4 +1,4 @@
-package org.client.User;
+package org.client.user;
 
 public class User {
     String ip;

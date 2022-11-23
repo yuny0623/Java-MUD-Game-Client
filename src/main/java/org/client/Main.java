@@ -1,6 +1,6 @@
 package org.client;
 
-import org.client.Client.MainClient;
+import org.client.client.MainClient;
 
 public class Main {
     public static void main(String[] args) {
