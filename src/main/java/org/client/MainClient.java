@@ -38,5 +38,25 @@ public class MainClient{
         }catch(IOException e){
             System.out.println("Connection failed");
         }
+
+        run();
+    }
+
+    public void run(){
+        while(true){
+            try {
+                str = in.readLine();
+                if (str == null) {
+                    continue;
+                }
+
+            /*
+                parsing str logic s
+             */
+                System.out.println(str);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 }
