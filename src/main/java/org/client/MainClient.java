@@ -37,6 +37,7 @@ public class MainClient{
     public void initNet(String ip, int port){
         try{
             socket = new Socket(ip, port);
+
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
         }catch(UnknownHostException e){
@@ -50,22 +51,15 @@ public class MainClient{
 
     public void run(){
         while(true){
-            try {
-                String clientInput = sc.nextLine();
-                if(clientInput == null){
-
-                }
-                str = in.readLine();     // 서버로부터 정보 전달받음
-                if (str == null) {
-                    continue;
-                }
-                /*
-                    parsing str logic
-                 */
-                System.out.println(str); // 사용자에게 정보 보여줌.
-            }catch(IOException e){
-                e.printStackTrace();
-            }
+            out.println("hello from client");
+//            try {
+//                System.out.println("input 을 입력하세요.");
+//                String clientInput = sc.nextLine();
+//                str = in.readLine();     // 서버로부터 정보 전달받음
+//                out.println("This is from client!: "+ clientInput);
+//            }catch(IOException e){
+//                e.printStackTrace();
+//            }
         }
     }
 }
