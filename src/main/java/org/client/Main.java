@@ -1,6 +1,6 @@
 package org.client;
 
-import java.net.InetAddress;
+import org.client.Client.MainClient;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package org.client;
+package org.client.Client;
 
 import org.client.Utils.ClientConfig;
 import org.client.Utils.JsonGenerator;
@@ -61,6 +61,7 @@ public class MainClient{
                 if(clientInput != null){
                     json = JsonGenerator.generateJson(clientInput);
                     if(json != null) {
+                        System.out.println(json);
                         out.println(json);
                     }else{
                         System.out.println("Invalid Input!");

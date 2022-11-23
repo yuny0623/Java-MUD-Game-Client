@@ -8,9 +8,12 @@ public class JsonGenerator {
         String[] inputs = action.split(" ");
         String command = inputs[0];
         String result = "";
-
         switch(command){
             case "move":
+                if(inputs.length != 3){
+                    result = null;
+                    break;
+                }
                 String x_val = inputs[1];
                 String y_val = inputs[2];
                 jsonObject.put("command", "move");
@@ -31,6 +34,10 @@ public class JsonGenerator {
                 result = jsonObject.toJSONString();
                 break;
             case "chat":
+                if(inputs.length != 3){
+                    result = null;
+                    break;
+                }
                 String opponent = inputs[1];
                 String content = inputs[2];
                 jsonObject.put("command", "chat");
