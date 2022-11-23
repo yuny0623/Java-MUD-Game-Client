@@ -54,7 +54,7 @@ public class MainClient{
             try {
                 input = br.readLine();
             }catch(IOException e){
-
+                e.printStackTrace();
             }
             out.println(input);
         }
