@@ -17,6 +17,14 @@ public class MainClient{
     String strIn;
     String json;
     String clientInput;
+    String gameLogo = "\n" +
+            ".___  ___.  __    __   _______       _______      ___      .___  ___.  _______ \n" +
+            "|   \\/   | |  |  |  | |       \\     /  _____|    /   \\     |   \\/   | |   ____|\n" +
+            "|  \\  /  | |  |  |  | |  .--.  |   |  |  __     /  ^  \\    |  \\  /  | |  |__   \n" +
+            "|  |\\/|  | |  |  |  | |  |  |  |   |  | |_ |   /  /_\\  \\   |  |\\/|  | |   __|  \n" +
+            "|  |  |  | |  `--'  | |  '--'  |   |  |__| |  /  _____  \\  |  |  |  | |  |____ \n" +
+            "|__|  |__|  \\______/  |_______/     \\______| /__/     \\__\\ |__|  |__| |_______|\n" +
+            "                                                                               \n";
 
     public MainClient(){
         try {
@@ -31,6 +39,7 @@ public class MainClient{
 
     public void start(){
         System.out.println("Starting Client...");
+        System.out.println(gameLogo);
         System.out.println("***********Command list***********");
         System.out.println("move x y");
         System.out.println("attack");
@@ -58,10 +67,10 @@ public class MainClient{
         while(true){
             try {
                 strIn = in.readLine();
+                // 아래 조건문 없으면 client와 server 상에서 한박자 어긋남.
                 if(strIn.isBlank()){
                     continue;
                 }
-                System.out.println("strIn: "+ strIn + ",strIn.length: " + strIn.length());
                 clientInput = br.readLine();
                 out.println(clientInput);
             }catch(Exception e){
