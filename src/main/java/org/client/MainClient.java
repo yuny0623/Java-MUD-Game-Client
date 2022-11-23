@@ -1,5 +1,7 @@
 package org.client;
 
+import org.client.Utils.ClientConfig;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -32,7 +34,7 @@ public class MainClient{
         try{
             socket = new Socket(ip, port);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())))
+            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
         }catch(UnknownHostException e){
             System.out.println("Different IP Address");
         }catch(IOException e){
@@ -50,9 +52,9 @@ public class MainClient{
                     continue;
                 }
 
-            /*
-                parsing str logic s
-             */
+                /*
+                    parsing str logic
+                 */
                 System.out.println(str);
             }catch(IOException e){
                 e.printStackTrace();
