@@ -16,7 +16,6 @@ public class MainClient{
     BufferedReader br;
     String strIn;
     String json;
-
     String clientInput;
 
     public MainClient(){
@@ -58,22 +57,13 @@ public class MainClient{
     public void run(){
         while(true){
             try {
-                strIn = in.readLine(); // 서버에서 받음.
-                System.out.println("strIn: " + strIn);
-                if(strIn != null){
-                    System.out.println(strIn);
+                strIn = in.readLine();
+                if(strIn.isBlank()){
+                    continue;
                 }
-                System.out.print("Input command:");
+                System.out.println("strIn: "+ strIn + ",strIn.length: " + strIn.length());
                 clientInput = br.readLine();
-                if(clientInput != null){
-                    json = JsonUtil.generateJson(clientInput);
-                    if(json.isBlank()||json.isEmpty()) {
-                        System.out.println(json);
-                        out.println(json);
-                    }else{
-                        System.out.println("Invalid Input!");
-                    }
-                }
+                out.println(clientInput);
             }catch(Exception e){
                 System.out.println(e.getMessage());
                 e.printStackTrace();
