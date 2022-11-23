@@ -13,14 +13,14 @@ public class MainClient{
     Socket socket;
     PrintWriter out;
     BufferedReader in;
+    BufferedReader br;
     String str;
-    String nickname;
+    String input;
     Scanner sc;
 
     public MainClient(){
         try {
-            sc = new Scanner(System.in);
-
+            br = new BufferedReader(new InputStreamReader(System.in));
             InetAddress ia = InetAddress.getLocalHost();
             String ipStr = ia.toString();
             ip = ipStr.substring(ipStr.indexOf("/") + 1);
@@ -39,7 +39,7 @@ public class MainClient{
             socket = new Socket(ip, port);
 
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
+            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         }catch(UnknownHostException e){
             System.out.println("Different IP Address");
         }catch(IOException e){
@@ -51,15 +51,12 @@ public class MainClient{
 
     public void run(){
         while(true){
-            out.println("hello from client");
-//            try {
-//                System.out.println("input 을 입력하세요.");
-//                String clientInput = sc.nextLine();
-//                str = in.readLine();     // 서버로부터 정보 전달받음
-//                out.println("This is from client!: "+ clientInput);
-//            }catch(IOException e){
-//                e.printStackTrace();
-//            }
+            try {
+                input = br.readLine();
+            }catch(IOException e){
+
+            }
+            out.println(input);
         }
     }
 }
