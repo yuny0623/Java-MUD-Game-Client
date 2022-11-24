@@ -65,6 +65,12 @@ public class JsonUtil {
                 jsonObject.put("command","bot");
                 result = jsonObject.toJSONString();
                 break;
+            case "nickname":
+                String nickname = inputs[1];
+                jsonObject.put("command", "nickname");
+                jsonObject.put("nickname", nickname);
+                result = jsonObject.toJSONString();
+                break;
             case "exit":
                 return "exit";
         }

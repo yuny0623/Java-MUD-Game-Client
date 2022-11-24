@@ -12,6 +12,7 @@ public class InputThread extends Thread{
     String clientInput;
     String json;
     JsonUtil jsonUtil;
+    String nickname;
 
     public InputThread(Socket socket){
         this.socket = socket;
@@ -19,11 +20,28 @@ public class InputThread extends Thread{
 
     @Override
     public void run(){
-        jsonUtil = JsonUtil.getInstance();
-
         try {
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
             br = new BufferedReader(new InputStreamReader(System.in));
+            jsonUtil = JsonUtil.getInstance();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // nickname 전송
+        try {
+            System.out.println("Type nickname:");
+            nickname = br.readLine();
+            while(true){
+                if(nickname.isBlank() || nickname.isEmpty()){
+                    System.out.println("Empty nickname.");
+                    System.out.println("Type nickname:");
+                    nickname = br.readLine();
+                }else{
+                    break;
+                }
+            }
+            out.println(jsonUtil.generateJson("nickname " + nickname));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,6 +12,5 @@ public final class ClientConfig {
         }
         return instance;
     }
-
     public static final int TCP_CONNECTION_DEFAULT_PORT = 8080;
 }
