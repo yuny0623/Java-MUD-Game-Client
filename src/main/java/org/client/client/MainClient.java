@@ -38,15 +38,15 @@ public class MainClient{
     }
 
     public void start(){
-        System.out.println("Starting Client...");
         System.out.println(gameLogo);
-        System.out.println("***********Command list***********");
-        System.out.println("move x y");
-        System.out.println("attack");
-        System.out.println("monsters");
-        System.out.println("users");
-        System.out.println("chat <username> <content>");
-        System.out.println("bot");
+        System.out.println("***************Command list****************");
+        System.out.println("*              move x y                   *");
+        System.out.println("*              attack                     *");
+        System.out.println("*              monsters                   *");
+        System.out.println("*              users                      *");
+        System.out.println("*              chat <username> <content>  *");
+        System.out.println("*              bot                        *");
+        System.out.println("*******************************************");
         initNet(ip, ClientConfig.TCP_CONNECTION_DEFAULT_PORT);
     }
 
@@ -67,12 +67,18 @@ public class MainClient{
         while(true){
             try {
                 strIn = in.readLine();
-                // 아래 조건문 없으면 client와 server 상에서 한박자 어긋남.
                 if(strIn.isBlank()){
                     continue;
                 }
+                System.out.println("received from server: " + strIn);
+                System.out.print("Input Command:");
                 clientInput = br.readLine();
-                out.println(clientInput);
+                String json = JsonUtil.generateJson(clientInput);
+                if(json.isEmpty() || json.isBlank()){
+                    System.out.println("Invalid Command!");
+                    continue;
+                }
+                out.println(json);
             }catch(Exception e){
                 System.out.println(e.getMessage());
                 e.printStackTrace();

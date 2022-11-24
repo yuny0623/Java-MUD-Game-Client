@@ -4,6 +4,9 @@ import org.json.simple.JSONObject;
 
 public class JsonUtil {
     public static String generateJson(String action){
+        if(action.isEmpty() || action ==  null){
+            return "";
+        }
         JSONObject jsonObject = new JSONObject();
         String[] inputs = action.split(" ");
         String command = inputs[0];
