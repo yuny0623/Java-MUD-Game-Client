@@ -41,10 +41,13 @@ public class InputThread extends Thread{
                     break;
                 }
             }
+            System.out.println("login as " + nickname);
             out.println(jsonUtil.generateJson("nickname " + nickname));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("login succeed.");
 
         while(true){
             try {
