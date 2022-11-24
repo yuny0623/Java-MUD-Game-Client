@@ -63,6 +63,8 @@ public class JsonUtil {
                 jsonObject.put("command","bot");
                 result = jsonObject.toJSONString();
                 break;
+            case "exit":
+                return "exit";
         }
         return result;
     }

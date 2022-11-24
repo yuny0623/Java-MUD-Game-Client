@@ -86,6 +86,9 @@ public class MainClient{
                 System.out.print("Input Command:");
                 clientInput = br.readLine();
                 String json = jsonUtil.generateJson(clientInput);
+                if(json.equals("exit")){
+                    System.exit(0);
+                }
                 if(json.isEmpty() || json.isBlank()){
                     System.out.println("Invalid Command!");
                     continue;
