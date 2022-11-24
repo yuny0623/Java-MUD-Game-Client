@@ -33,9 +33,10 @@ public class DisplayThread extends Thread {
                 if (strIn.isBlank()) {
                     continue;
                 }
-                System.out.println(jsonUtil.parseJson(strIn));
+                System.out.println("[Notice] " + jsonUtil.parseJson(strIn));
             }catch(Exception e){
                 e.printStackTrace();
+                break;
             }
         }
     }
