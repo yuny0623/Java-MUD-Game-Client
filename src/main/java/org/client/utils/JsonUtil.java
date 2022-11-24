@@ -3,7 +3,20 @@ package org.client.utils;
 import org.json.simple.JSONObject;
 
 public class JsonUtil {
-    public static String generateJson(String action){
+
+    private static JsonUtil instance;
+
+    private JsonUtil(){
+
+    }
+    public static JsonUtil getInstance(){
+        if(instance == null){
+            instance = new JsonUtil();
+        }
+        return instance;
+    }
+
+    public String generateJson(String action){
         if(action.isEmpty() || action ==  null){
             return "";
         }
@@ -52,5 +65,9 @@ public class JsonUtil {
                 break;
         }
         return result;
+    }
+
+    public String parseJson(String json){
+        return new String();
     }
 }

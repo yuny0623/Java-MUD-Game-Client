@@ -14,6 +14,7 @@ public class MainClient{
     PrintWriter out;
     BufferedReader in;
     BufferedReader br;
+    JsonUtil jsonUtil;
     String strIn;
     String json;
     String clientInput;
@@ -48,6 +49,7 @@ public class MainClient{
         System.out.println("*              bot                        *");
         System.out.println("*******************************************");
         initNet(ip, ClientConfig.TCP_CONNECTION_DEFAULT_PORT);
+        jsonUtil = JsonUtil.getInstance();
     }
 
     public void initNet(String ip, int port){
@@ -64,6 +66,16 @@ public class MainClient{
     }
 
     public void run(){
+        System.out.print("Type user nickname:");
+        try {
+            String nickname = in.readLine();
+            /*
+                닉네임 중복 확인 logic
+             */
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
         while(true){
             try {
                 strIn = in.readLine();
@@ -73,7 +85,7 @@ public class MainClient{
                 System.out.println("received from server: " + strIn);
                 System.out.print("Input Command:");
                 clientInput = br.readLine();
-                String json = JsonUtil.generateJson(clientInput);
+                String json = jsonUtil.generateJson(clientInput);
                 if(json.isEmpty() || json.isBlank()){
                     System.out.println("Invalid Command!");
                     continue;
