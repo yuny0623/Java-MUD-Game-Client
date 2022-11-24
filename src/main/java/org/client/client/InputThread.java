@@ -28,7 +28,6 @@ public class InputThread extends Thread{
             e.printStackTrace();
         }
 
-        // nickname 전송
         try {
             System.out.println("Type nickname:");
             nickname = br.readLine();
