@@ -10,14 +10,9 @@ import java.net.UnknownHostException;
 
 public class MainClient{
     String ip;
+    int port;
     Socket socket;
-    PrintWriter out;
-    BufferedReader in;
-    BufferedReader br;
-    JsonUtil jsonUtil;
-    String strIn;
-    String json;
-    String clientInput;
+
     String gameLogo = "\n" +
             ".___  ___.  __    __   _______       _______      ___      .___  ___.  _______ \n" +
             "|   \\/   | |  |  |  | |       \\     /  _____|    /   \\     |   \\/   | |   ____|\n" +
@@ -29,16 +24,22 @@ public class MainClient{
 
     public MainClient(){
         try {
-            br = new BufferedReader(new InputStreamReader(System.in));
             InetAddress ia = InetAddress.getLocalHost();
             String ipStr = ia.toString();
             ip = ipStr.substring(ipStr.indexOf("/") + 1);
+            port = ClientConfig.TCP_CONNECTION_DEFAULT_PORT;
         }catch(Exception err){
             err.printStackTrace();
         }
     }
 
     public void start(){
+        printLogs();
+        initNet(ip, port);
+        initThreads(socket);
+    }
+
+    public void printLogs(){
         System.out.println(gameLogo);
         System.out.println("***************Command list****************");
         System.out.println("*              move x y                   *");
@@ -48,56 +49,22 @@ public class MainClient{
         System.out.println("*              chat <username> <content>  *");
         System.out.println("*              bot                        *");
         System.out.println("*******************************************");
-        initNet(ip, ClientConfig.TCP_CONNECTION_DEFAULT_PORT);
-        jsonUtil = JsonUtil.getInstance();
+    }
+
+    public void initThreads(Socket socket){
+        InputThread inputThread = new InputThread(socket);
+        inputThread.start();
+        DisplayThread displayThread = new DisplayThread(socket);
+        displayThread.start();
     }
 
     public void initNet(String ip, int port){
         try{
             socket = new Socket(ip, port);
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         }catch(UnknownHostException e){
             System.out.println("Different IP Address");
         }catch(IOException e){
             System.out.println("Connection failed");
-        }
-        run();
-    }
-
-    public void run(){
-        System.out.print("Type user nickname:");
-        try {
-            String nickname = in.readLine();
-            /*
-                닉네임 중복 확인 logic
-             */
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        while(true){
-            try {
-                strIn = in.readLine();
-                if(strIn.isBlank()){
-                    continue;
-                }
-                System.out.println("received from server: " + strIn);
-                System.out.print("Input Command:");
-                clientInput = br.readLine();
-                String json = jsonUtil.generateJson(clientInput);
-                if(json.equals("exit")){
-                    System.exit(0);
-                }
-                if(json.isEmpty() || json.isBlank()){
-                    System.out.println("Invalid Command!");
-                    continue;
-                }
-                out.println(json);
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
         }
     }
 }
