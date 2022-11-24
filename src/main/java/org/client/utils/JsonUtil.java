@@ -1,6 +1,8 @@
 package org.client.utils;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class JsonUtil {
 
@@ -70,6 +72,20 @@ public class JsonUtil {
     }
 
     public String parseJson(String json){
-        return new String();
+        String result = "";
+        if(json.isEmpty() || json.isBlank()){
+            System.out.println("Invalid received json");
+            return result;
+        }
+        JSONObject jsonObject = new JSONObject();
+        JSONParser parser = new JSONParser();
+        try {
+            jsonObject = (JSONObject) parser.parse(json);
+        }catch(ParseException e){
+            e.printStackTrace();
+            return result;
+        }
+        result = (String) jsonObject.get("Notice");
+        return result;
     }
 }

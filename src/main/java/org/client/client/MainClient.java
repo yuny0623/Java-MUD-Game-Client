@@ -52,10 +52,10 @@ public class MainClient{
     }
 
     public void initThreads(Socket socket){
-        InputThread inputThread = new InputThread(socket);
-        inputThread.start();
         DisplayThread displayThread = new DisplayThread(socket);
         displayThread.start();
+        InputThread inputThread = new InputThread(socket);
+        inputThread.start();
     }
 
     public void initNet(String ip, int port){
