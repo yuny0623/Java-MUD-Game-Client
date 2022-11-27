@@ -9,3 +9,5 @@ readLine 이 blocking 으로 동작함.
 client에서 받은 input을 서버로 전송하는 것을
 두 개의 thread로 나눠서 처리하는 것이 더 좋다.
 
+남은 과제:
+client 측에서는 남은 일이 별로 없네.

@@ -50,7 +50,6 @@ public class InputThread extends Thread{
 
         while(true){
             try {
-                System.out.print("Input Command:");
                 clientInput = br.readLine();
                 json = jsonUtil.generateJson(clientInput);
                 if(json.isEmpty() || json.isBlank()){
