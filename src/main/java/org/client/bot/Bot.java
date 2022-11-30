@@ -33,7 +33,6 @@ public class Bot extends Thread{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         while(!stopFlag){
             try {
                 Thread.sleep(1000);
@@ -51,15 +50,15 @@ public class Bot extends Thread{
         String command = null;
         int x;
         int y;
-        int randomCommand = (int) (Math.random() * (3 - 0 + 1) + 0);
+        int randomCommand = (int) (Math.random() * (3 - 0 + 1)) + 0;
         switch(randomCommand){
             case 0:
-                x = (int) (Math.random() * (29 - 0 + 1) + 0);
-                y = (int) (Math.random() * (29 - 0 + 1) + 0);
+                x = (int) (Math.random() * (3 - (-3) + 1)) + (-3);
+                y = (int) (Math.random() * (3 - (-3) + 1)) + (-3);
                 command = "move " + x + " " + y;
                 break;
             case 1:
-                command = "action";
+                command = "attack";
                 break;
             case 2:
                 command = "monsters";
@@ -67,6 +66,9 @@ public class Bot extends Thread{
             case 3:
                 command = "users";
                 break;
+            /*
+                chat
+             */
         }
         return command;
     }
