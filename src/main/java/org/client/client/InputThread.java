@@ -1,5 +1,6 @@
 package org.client.client;
 
+import org.client.bot.Bot;
 import org.client.utils.JsonUtil;
 
 import java.io.*;
@@ -13,6 +14,8 @@ public class InputThread extends Thread{
     String json;
     JsonUtil jsonUtil;
     String nickname;
+    boolean botFlag;
+    Bot bot;
 
     public InputThread(Socket socket){
         this.socket = socket;
@@ -28,6 +31,7 @@ public class InputThread extends Thread{
             e.printStackTrace();
         }
 
+        // 로그인 과정
         try {
             System.out.println("Type nickname:");
             nickname = br.readLine();
@@ -45,12 +49,29 @@ public class InputThread extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         System.out.println("login succeed.");
 
+        // 게임 진행
         while(true){
             try {
                 clientInput = br.readLine();
+
+                if(clientInput.equals("bot")){
+                    bot = new Bot(socket, nickname);
+                    bot.start();
+                    json = jsonUtil.generateJson("bot");
+                    out.println(json);
+                    System.out.println("Bot mode start.");
+                    clientInput = null;
+                    continue;
+                }
+                if(clientInput.equals("exit bot")){
+                    bot.stopFlag = true;
+                    out.println(jsonUtil.generateJson("exit bot"));
+                    System.out.println("Bot mode stop.");
+                    clientInput = null;
+                    continue;
+                }
                 json = jsonUtil.generateJson(clientInput);
                 if(json.isEmpty() || json.isBlank()){
                     System.out.println("Invalid Command.");
