@@ -51,7 +51,7 @@ public class Bot extends Thread{
         String command = null;
         int x;
         int y;
-        int randomCommand = (int) (Math.random() * (1 - 0 + 1) + 0);
+        int randomCommand = (int) (Math.random() * (3 - 0 + 1) + 0);
         switch(randomCommand){
             case 0:
                 x = (int) (Math.random() * (29 - 0 + 1) + 0);
@@ -60,6 +60,12 @@ public class Bot extends Thread{
                 break;
             case 1:
                 command = "action";
+                break;
+            case 2:
+                command = "monsters";
+                break;
+            case 3:
+                command = "users";
                 break;
         }
         return command;
