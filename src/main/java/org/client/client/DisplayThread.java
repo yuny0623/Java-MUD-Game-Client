@@ -30,7 +30,7 @@ public class DisplayThread extends Thread {
         while(true){
             try {
                 strIn = in.readLine();
-                if (strIn.isBlank()) {
+                if (strIn.isEmpty() || strIn.isBlank()) {
                     continue;
                 }
                 System.out.println("[Notice] " + jsonUtil.parseJson(strIn));
