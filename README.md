@@ -10,7 +10,7 @@ MUD: Multi User Dungeon 은 초기 온라인 게임의 한 형태이다.
  
 💾 기능 소개 
    - 사용자 입력 처리 
-   - 서버로부터 받은 텍스트 출려 처리 
+   - 서버로부터 받은 텍스트 출력 처리 
    
 📑 플레이 방법 
    - move x y
@@ -30,10 +30,8 @@ MUD: Multi User Dungeon 은 초기 온라인 게임의 한 형태이다.
 ```
 
 ## Reference
-```
- - json-simple: https://tychejin.tistory.com/139
- - json-simple: https://mkil.tistory.com/323 
-```
+- json-simple: https://tychejin.tistory.com/139
+- json-simple: https://mkil.tistory.com/323 
 
 ## Game Server Repository
 > [서버 리포지토리](https://github.com/yuny0623/Java-MUD-Game-Server)
