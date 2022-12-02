@@ -7,6 +7,10 @@
 
 /.idea
 
+# development log
+/.devLog
+/devLog
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
