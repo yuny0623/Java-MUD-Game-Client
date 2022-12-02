@@ -59,12 +59,18 @@ public class MainClient{
     }
 
     public void initNet(String ip, int port){
-        try{
-            socket = new Socket(ip, port);
-        }catch(UnknownHostException e){
-            System.out.println("Different IP Address");
-        }catch(IOException e){
-            System.out.println("Connection failed");
+        while(true) {
+            System.out.println("Connecting to MainServer.");
+            try {
+                socket = new Socket(ip, port);
+            } catch (UnknownHostException e) {
+                System.out.println("Different IP Address");
+            } catch (IOException e) {
+                System.out.println("Connection failed.");
+            }
+            if(socket != null){
+                break;
+            }
         }
     }
 }
