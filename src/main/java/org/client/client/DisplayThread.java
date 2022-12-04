@@ -13,6 +13,7 @@ public class DisplayThread extends Thread {
     String strIn;
     BufferedReader in;
     JsonUtil jsonUtil;
+    String parsedJson;
 
     public DisplayThread(Socket socket){
         this.socket = socket;
@@ -26,14 +27,18 @@ public class DisplayThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         while(true){
             try {
                 strIn = in.readLine();
                 if (strIn.isEmpty() || strIn.isBlank()) {
                     continue;
                 }
-                System.out.println("[Notice] " + jsonUtil.parseJson(strIn));
+                parsedJson = jsonUtil.parseJson(strIn);
+                if(parsedJson.isEmpty() || parsedJson.isBlank()){
+                    System.out.println("[Error] parsing json error.");
+                }else {
+                    System.out.println("[Notice] " + parsedJson);
+                }
             }catch(Exception e){
                 if(e.getMessage().equals("Connection reset")) {
                     System.out.println("[Error] Socket " + e.getMessage());

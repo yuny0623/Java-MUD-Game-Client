@@ -17,6 +17,24 @@ public class JsonUtil {
         return instance;
     }
 
+    public String parseJson(String json){
+        String result = "";
+        if(json.isEmpty() || json.isBlank()){
+            System.out.println("Invalid received json");
+            return result;
+        }
+        JSONObject jsonObject;
+        JSONParser parser = new JSONParser();
+        try {
+            jsonObject = (JSONObject) parser.parse(json);
+        }catch(ParseException e){
+            e.printStackTrace();
+            return result;
+        }
+        result = (String) jsonObject.get("Notice");
+        return result;
+    }
+
     public String generateJson(String action){
         if(action.isEmpty() || action ==  null){
             return "";
@@ -73,24 +91,6 @@ public class JsonUtil {
             case "exit":
                 return "exit";
         }
-        return result;
-    }
-
-    public String parseJson(String json){
-        String result = "";
-        if(json.isEmpty() || json.isBlank()){
-            System.out.println("Invalid received json");
-            return result;
-        }
-        JSONObject jsonObject = new JSONObject();
-        JSONParser parser = new JSONParser();
-        try {
-            jsonObject = (JSONObject) parser.parse(json);
-        }catch(ParseException e){
-            e.printStackTrace();
-            return result;
-        }
-        result = (String) jsonObject.get("Notice");
         return result;
     }
 }
