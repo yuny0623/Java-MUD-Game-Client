@@ -30,7 +30,6 @@ public class DisplayThread extends Thread {
         while(true){
             try {
                 strIn = in.readLine();
-                System.out.println("strIn: " + strIn);
                 if (strIn.isEmpty() || strIn.isBlank()) {
                     continue;
                 }
