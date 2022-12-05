@@ -67,9 +67,6 @@ public class Bot extends Thread{
             case 3:
                 command = "users";
                 break;
-            /*
-                chat
-             */
         }
         return command;
     }

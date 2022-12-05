@@ -30,7 +30,6 @@ public class DisplayThread extends Thread {
         while(true){
             try {
                 strIn = in.readLine();
-                System.out.println("DisplayThread - strIn: " + strIn);
                 if (strIn.isEmpty() || strIn.isBlank()) {
                     continue;
                 }
@@ -41,7 +40,7 @@ public class DisplayThread extends Thread {
                     System.out.println("[Notice] " + parsedJson);
                 }
             }catch(Exception e){
-                if(e.getMessage().equals("Connection reset")) {
+                if(e.getMessage().equals("Connection reset.")) {
                     System.out.println("[Error] Socket " + e.getMessage());
                     System.out.println("Server is not running...");
                 }else{

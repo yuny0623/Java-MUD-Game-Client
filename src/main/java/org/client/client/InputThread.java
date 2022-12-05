@@ -38,7 +38,7 @@ public class InputThread extends Thread{
             while(true){
                 if(nickname.isBlank() || nickname.isEmpty()){
                     System.out.println("Empty nickname.");
-                    System.out.println("Type nickname:");
+                    System.out.println("Type nickname again:");
                     nickname = br.readLine();
                 }else{
                     break;
