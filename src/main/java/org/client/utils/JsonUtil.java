@@ -92,6 +92,11 @@ public class JsonUtil {
                 jsonObject.put("command", "exit bot");
                 result = jsonObject.toJSONString();
                 break;
+            case "potion":
+                String item = inputs[1];
+                jsonObject.put("command", "potion");
+                jsonObject.put("item", item);
+                result = jsonObject.toJSONString();
         }
         return result;
     }

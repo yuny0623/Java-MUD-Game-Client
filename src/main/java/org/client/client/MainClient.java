@@ -41,13 +41,15 @@ public class MainClient{
 
     public void printLogs(){
         System.out.println(gameLogo);
-        System.out.println("***************Command list****************");
+        System.out.println("***************COMMAND LIST****************");
         System.out.println("*              move x y                   *");
         System.out.println("*              attack                     *");
         System.out.println("*              monsters                   *");
         System.out.println("*              users                      *");
         System.out.println("*              chat <username> <content>  *");
         System.out.println("*              bot                        *");
+        System.out.println("*              exit bot                   *");
+        System.out.println("*              potion <item>              *");
         System.out.println("*******************************************");
     }
 
