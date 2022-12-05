@@ -57,11 +57,11 @@ public class InputThread extends Thread{
                 clientInput = br.readLine();
 
                 if(clientInput.equals("bot")){
+                    System.out.println("Start Bot mode.");
                     bot = new Bot(socket, nickname);
                     bot.start();
                     json = jsonUtil.generateJson("bot");
                     out.println(json);
-                    System.out.println("Bot mode start.");
                     clientInput = null;
                     continue;
                 }
@@ -72,7 +72,9 @@ public class InputThread extends Thread{
                     clientInput = null;
                     continue;
                 }
+                System.out.println("---1");
                 json = jsonUtil.generateJson(clientInput);
+                System.out.println("---2");
                 if(json.isEmpty() || json.isBlank()){
                     System.out.println("Invalid Command.");
                     continue;

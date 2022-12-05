@@ -89,7 +89,9 @@ public class JsonUtil {
                 result = jsonObject.toJSONString();
                 break;
             case "exit":
-                return "exit";
+                jsonObject.put("command", "exit");
+                result = jsonObject.toJSONString();
+                break;
         }
         return result;
     }
