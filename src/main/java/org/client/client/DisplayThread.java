@@ -36,9 +36,9 @@ public class DisplayThread extends Thread {
                 parsedJson = jsonUtil.parseJson(strIn);
                 if(parsedJson.isEmpty() || parsedJson.isBlank()){
                     System.out.println("[Error] parsing json error.");
-                }else {
-                    System.out.println("[Notice] " + parsedJson);
+                    continue;
                 }
+                System.out.println("[Notice] " + parsedJson);
             }catch(Exception e){
                 if(e.getMessage().equals("Connection reset.")) {
                     System.out.println("[Error] Socket " + e.getMessage());

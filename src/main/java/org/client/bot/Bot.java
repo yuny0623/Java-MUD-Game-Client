@@ -34,11 +34,13 @@ public class Bot extends Thread{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        while(!stopFlag){
+
+        while(!this.isInterrupted()){
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                out.close();
+                break;
             }
             command = randomCommand();
             System.out.println("[Bot] " + command);

@@ -67,8 +67,9 @@ public class InputThread extends Thread{
                     continue;
                 }
                 if(clientInput.equals("exit bot")){
-                    bot.stopFlag = true;
-                    out.println(jsonUtil.generateJson("exit bot"));
+                    bot.interrupt();
+                    json = jsonUtil.generateJson("exit bot");
+                    out.println(json);
                     System.out.println("Bot mode stop.");
                     clientInput = null;
                     continue;

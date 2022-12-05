@@ -3,7 +3,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ParserTest {
-
     @Test
     public void json_parser_test(){
         // given

@@ -44,6 +44,12 @@ public class JsonUtil {
         String command = inputs[0];
         String result = "";
         switch(command){
+            case "nickname":
+                String nickname = inputs[1];
+                jsonObject.put("command", "nickname");
+                jsonObject.put("nickname", nickname);
+                result = jsonObject.toJSONString();
+                break;
             case "move":
                 if(inputs.length != 3){
                     break;
@@ -82,14 +88,8 @@ public class JsonUtil {
                 jsonObject.put("command","bot");
                 result = jsonObject.toJSONString();
                 break;
-            case "nickname":
-                String nickname = inputs[1];
-                jsonObject.put("command", "nickname");
-                jsonObject.put("nickname", nickname);
-                result = jsonObject.toJSONString();
-                break;
             case "exit":
-                jsonObject.put("command", "exit");
+                jsonObject.put("command", "exit bot");
                 result = jsonObject.toJSONString();
                 break;
         }
