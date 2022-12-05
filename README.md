@@ -1,6 +1,6 @@
-# Java MUD Game project - Client
+# ⭐ Java MUD Game project - Client
 
-## Project Intro
+## 🍀 Project Intro
 ```
 🌊 프로젝트 소개
 MUD: Multi User Dungeon 은 초기 온라인 게임의 한 형태이다. 
@@ -21,7 +21,7 @@ MUD: Multi User Dungeon 은 초기 온라인 게임의 한 형태이다.
    6️⃣ bot 
 ```
 
-## Tech
+## 📲 Tech
 ```
 ⛵ Java 17
 ⚓ Gradle 
@@ -29,10 +29,10 @@ MUD: Multi User Dungeon 은 초기 온라인 게임의 한 형태이다.
 🚀 json-simple
 ```
 
-## Reference
+## 📚 Reference
 - json-simple: https://tychejin.tistory.com/139
 - json-simple: https://mkil.tistory.com/323 
 
-## Game Server Repository
+## 🔗 Game Server Repository
 > [서버 리포지토리](https://github.com/yuny0623/Java-MUD-Game-Server)
 
