@@ -49,6 +49,7 @@ public class InputThread extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         System.out.println("login succeed.");
 
         // 게임 진행
@@ -72,9 +73,7 @@ public class InputThread extends Thread{
                     clientInput = null;
                     continue;
                 }
-                System.out.println("---1");
                 json = jsonUtil.generateJson(clientInput);
-                System.out.println("---2");
                 if(json.isEmpty() || json.isBlank()){
                     System.out.println("Invalid Command.");
                     continue;
