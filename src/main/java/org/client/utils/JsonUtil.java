@@ -54,11 +54,21 @@ public class JsonUtil {
                 if(inputs.length != 3){
                     break;
                 }
-                String x_val = inputs[1];
-                String y_val = inputs[2];
+                int xVal = Integer.parseInt(inputs[1]);
+                int yVal = Integer.parseInt(inputs[2]);
+                if(xVal < -3){
+                    xVal = -3;
+                }else if(xVal > 3){
+                    xVal = 3;
+                }
+                if(yVal < -3){
+                    yVal = -3;
+                }else if(yVal > 3){
+                    yVal = 3;
+                }
                 jsonObject.put("command", "move");
-                jsonObject.put("x", x_val);
-                jsonObject.put("y", y_val);
+                jsonObject.put("x", String.valueOf(xVal));
+                jsonObject.put("y", String.valueOf(yVal));
                 result = jsonObject.toJSONString();
                 break;
             case "attack":
