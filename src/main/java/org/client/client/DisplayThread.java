@@ -36,6 +36,9 @@ public class DisplayThread extends Thread {
                     continue;
                 }
                 parsedJson = jsonUtil.parseJson(strIn);
+                if(parsedJson==null){
+                    continue;
+                }
                 if(parsedJson.isEmpty() || parsedJson.isBlank()){
                     System.out.println("[Error] parsing json error.");
                     continue;

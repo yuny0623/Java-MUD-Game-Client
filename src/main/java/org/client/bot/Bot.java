@@ -79,7 +79,7 @@ public class Bot extends Thread{
                 command = "users";
                 break;
             case 4:
-                String to = randomReceiver();
+                String to = randomUser();
                 if(to.isBlank() || to.isEmpty()){
                     break;
                 }
@@ -90,16 +90,18 @@ public class Bot extends Thread{
         return command;
     }
 
-    public String randomReceiver(){
+    public String randomUser(){
         int limit = MainClient.userList.size() - 1;
-        int i = (int) (Math.random() * (limit - (-limit) + 1)) + (-limit);
+        if(limit <= 0)
+            return "";
+        int i = (int) (Math.random() * (limit - 0 + 1)) + (0);
         return MainClient.userList.get(i);
     }
 
 
     public String randomMessage(){
         int limit = MainClient.messageList.size() - 1;
-        int i = (int) (Math.random() * (limit - (-limit) + 1)) + (-limit);
+        int i = (int) (Math.random() * (limit - 0 + 1)) + (0);
         return MainClient.messageList.get(i);
     }
 }
