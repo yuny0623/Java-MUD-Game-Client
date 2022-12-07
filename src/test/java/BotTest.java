@@ -76,7 +76,6 @@ public class BotTest {
         Assert.assertEquals(5, liveBot);
     }
 
-
     @Test
     @DisplayName("Random user 뽑아내기 테스트")
     public void get_random_user_test(){
@@ -88,7 +87,6 @@ public class BotTest {
         userList.add("gradle");
         userList.add("java");
 
-        // (int) (Math.random() * (최댓값-최소값 + 1)) + 최소값
         // when
         int limit = userList.size() - 1;
         int i = (int) (Math.random() * (limit - 0 + 1)) + 0;
@@ -96,5 +94,30 @@ public class BotTest {
 
         // then
         Assert.assertTrue(userList.contains(user));
+    }
+
+    @Test
+    @DisplayName("(int) (Math.random() * (최댓값-최소값 + 1)) + 최소값/ 공식 테스트")
+    public void random_number_range_test(){
+        // given
+        int limit = 9;
+        int number = 0;
+        boolean[] check = new boolean[10];
+
+        // when
+        for(int i = 0; i < 100000; i++){
+            number = (int) (Math.random() * (limit - 0 + 1)) + 0;
+            check[number] = true;
+        }
+        int k = 0;
+        while (k < 10){
+            if(!check[k]){
+                break;
+            }
+            k++;
+        }
+
+        // then
+        Assert.assertEquals(10, k);
     }
  }
