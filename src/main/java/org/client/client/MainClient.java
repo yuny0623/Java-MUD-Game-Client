@@ -49,7 +49,8 @@ public class MainClient{
         System.out.println("*              chat <username> <content>  *");
         System.out.println("*              bot                        *");
         System.out.println("*              exit bot                   *");
-        System.out.println("*              potion <item>              *");
+        System.out.println("*              potion hp                  *");
+        System.out.println("*              potion str                 *");
         System.out.println("*******************************************");
     }
 

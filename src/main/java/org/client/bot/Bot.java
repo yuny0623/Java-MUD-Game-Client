@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Bot extends Thread{
@@ -18,7 +20,6 @@ public class Bot extends Thread{
     JsonUtil jsonUtil;
     String command;
     String json;
-
     public Bot(Socket socket, String nickname){
         System.out.println("Create Bot.");
         this.socket = socket;
