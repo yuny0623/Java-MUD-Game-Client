@@ -43,13 +43,17 @@ public class DisplayThread extends Thread {
                 }
                 System.out.println("[Notice] " + parsedJson);
             }catch(Exception e){
-                if(e.getMessage().equals("Connection reset.")) {
-                    System.out.println("[Error] Socket " + e.getMessage());
+                if(e.getMessage().equals("Connection reset")) {
+                    System.out.println("[Error] Socket - " + e.getMessage());
                     System.out.println("Server is not running...");
                 }else{
                     System.out.println(e.getMessage());
                 }
                 System.out.println("Exit Client.");
+                if(MainClient.bot != null) {
+                    System.out.println("Exit Bot.");
+                    MainClient.bot.interrupt();
+                }
                 try {
                     socket.close();
                     in.close();

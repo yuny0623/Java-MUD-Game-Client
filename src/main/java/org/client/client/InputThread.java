@@ -63,6 +63,7 @@ public class InputThread extends Thread{
                     System.out.println("Start Bot mode.");
                     bot = new Bot(socket, nickname);
                     bot.start();
+                    MainClient.bot = bot;
                     json = jsonUtil.generateJson("bot");
                     out.println(json);
                     clientInput = null;
@@ -70,6 +71,7 @@ public class InputThread extends Thread{
                 }
                 if(clientInput.equals("exit bot")){
                     bot.interrupt();
+                    MainClient.bot = null;
                     json = jsonUtil.generateJson("exit bot");
                     out.println(json);
                     System.out.println("Bot mode stop.");

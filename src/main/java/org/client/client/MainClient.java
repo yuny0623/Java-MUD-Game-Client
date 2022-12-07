@@ -1,5 +1,6 @@
 package org.client.client;
 
+import org.client.bot.Bot;
 import org.client.utils.ClientConfig;
 import org.client.utils.JsonUtil;
 
@@ -12,7 +13,7 @@ public class MainClient{
     String ip;
     int port;
     Socket socket;
-
+    public static Bot bot;
     String gameLogo = "\n" +
             ".___  ___.  __    __   _______       _______      ___      .___  ___.  _______ \n" +
             "|   \\/   | |  |  |  | |       \\     /  _____|    /   \\     |   \\/   | |   ____|\n" +
