@@ -83,6 +83,15 @@ public class InputThread extends Thread{
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
+            } finally {
+                try {
+                    socket.close();
+                    out.close();
+                    br.close();
+                }catch(IOException e){
+                    e.printStackTrace();
+                    System.exit(1);
+                }
             }
         }
     }

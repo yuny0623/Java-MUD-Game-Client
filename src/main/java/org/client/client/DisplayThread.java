@@ -47,6 +47,7 @@ public class DisplayThread extends Thread {
                     System.out.println(e.getMessage());
                 }
                 System.out.println("Exit Client.");
+                break;
             }finally {
                 try {
                     socket.close();
