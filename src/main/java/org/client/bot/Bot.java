@@ -1,6 +1,8 @@
 package org.client.bot;
 
+import org.client.Main;
 import org.client.client.InputThread;
+import org.client.client.MainClient;
 import org.client.utils.JsonUtil;
 
 import java.io.BufferedWriter;
@@ -20,6 +22,9 @@ public class Bot extends Thread{
     JsonUtil jsonUtil;
     String command;
     String json;
+
+
+
     public Bot(Socket socket, String nickname){
         System.out.println("Create Bot.");
         this.socket = socket;
@@ -43,6 +48,10 @@ public class Bot extends Thread{
                 break;
             }
             command = randomCommand();
+            if(command.isEmpty() || command.isBlank()){
+                System.out.println("[Bot] Invalid Command.");
+                continue;
+            }
             System.out.println("[Bot] " + command);
             json = jsonUtil.generateJson(command);
             out.println(json);
@@ -50,14 +59,14 @@ public class Bot extends Thread{
     }
 
     public String randomCommand(){
-        String command = null;
+        String command = "";
         int x;
         int y;
-        int randomCommand = (int) (Math.random() * (3 - 0 + 1)) + 0;
+        int randomCommand = (int) (Math.random() * (4 - 0 + 1)) + 0;
         switch(randomCommand){
             case 0:
-                x = (int) (Math.random() * (3 - (-3) + 1)) + (-3);
-                y = (int) (Math.random() * (3 - (-3) + 1)) + (-3);
+                x = (int) (Math.random() * (4 - (-4) + 1)) + (-4);
+                y = (int) (Math.random() * (4 - (-4) + 1)) + (-4);
                 command = "move " + x + " " + y;
                 break;
             case 1:
@@ -69,7 +78,28 @@ public class Bot extends Thread{
             case 3:
                 command = "users";
                 break;
+            case 4:
+                String to = randomReceiver();
+                if(to.isBlank() || to.isEmpty()){
+                    break;
+                }
+                String message = randomMessage();
+                command = "chat " + to + " " + message;
+                break;
         }
         return command;
+    }
+
+    public String randomReceiver(){
+        int limit = MainClient.userList.size() - 1;
+        int i = (int) (Math.random() * (limit - (-limit) + 1)) + (-limit);
+        return MainClient.userList.get(i);
+    }
+
+
+    public String randomMessage(){
+        int limit = MainClient.messageList.size() - 1;
+        int i = (int) (Math.random() * (limit - (-limit) + 1)) + (-limit);
+        return MainClient.messageList.get(i);
     }
 }

@@ -8,12 +8,18 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainClient{
     String ip;
     int port;
     Socket socket;
     public static Bot bot;
+
+    public static List<String> userList = new ArrayList<>();
+    public static List<String> messageList = new ArrayList<>();
+
     String gameLogo = "\n" +
             ".___  ___.  __    __   _______       _______      ___      .___  ___.  _______ \n" +
             "|   \\/   | |  |  |  | |       \\     /  _____|    /   \\     |   \\/   | |   ____|\n" +
@@ -38,6 +44,12 @@ public class MainClient{
         printLogs();
         initNet(ip, port);
         initThreads(socket);
+
+        messageList.add("hi");
+        messageList.add("bye");
+        messageList.add("good");
+        messageList.add("bad");
+        messageList.add("gg");
     }
 
     public void printLogs(){

@@ -75,4 +75,26 @@ public class BotTest {
         // then
         Assert.assertEquals(5, liveBot);
     }
-}
+
+
+    @Test
+    @DisplayName("Random user 뽑아내기 테스트")
+    public void get_random_user_test(){
+        // given
+        List<String> userList = new ArrayList<>();
+        userList.add("tony");
+        userList.add("bruce");
+        userList.add("maven");
+        userList.add("gradle");
+        userList.add("java");
+
+        // (int) (Math.random() * (최댓값-최소값 + 1)) + 최소값
+        // when
+        int limit = userList.size() - 1;
+        int i = (int) (Math.random() * (limit - 0 + 1)) + 0;
+        String user = userList.get(i);
+
+        // then
+        Assert.assertTrue(userList.contains(user));
+    }
+ }

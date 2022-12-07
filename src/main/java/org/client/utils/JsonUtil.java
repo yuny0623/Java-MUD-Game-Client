@@ -1,5 +1,7 @@
 package org.client.utils;
 
+import org.client.Main;
+import org.client.client.MainClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -30,6 +32,19 @@ public class JsonUtil {
         }catch(ParseException e){
             e.printStackTrace();
             return result;
+        }
+        String monsterInfo = (String) jsonObject.get("MonsterInfo");
+        if(monsterInfo!= null){
+            return monsterInfo;
+        }
+        String userInfo = (String) jsonObject.get("UserInfo");
+        if(userInfo != null){
+            String[] users = userInfo.split("\n");
+            for(String user: users){
+                String[] vals = user.split(" ");
+                String userName = vals[0];
+                MainClient.userList.add(userName);
+            }
         }
         result = (String) jsonObject.get("Notice");
         return result;

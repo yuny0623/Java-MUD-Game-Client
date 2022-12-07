@@ -16,7 +16,6 @@ public class DisplayThread extends Thread {
     BufferedReader in;
     JsonUtil jsonUtil;
     String parsedJson;
-    static List<String>  userList = new ArrayList<>();;
 
     public DisplayThread(Socket socket){
         this.socket = socket;
