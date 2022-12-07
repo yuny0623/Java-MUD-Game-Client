@@ -18,7 +18,6 @@ public class Bot extends Thread{
     JsonUtil jsonUtil;
     String command;
     String json;
-    public boolean stopFlag;
 
     public Bot(Socket socket, String nickname){
         System.out.println("Create Bot.");

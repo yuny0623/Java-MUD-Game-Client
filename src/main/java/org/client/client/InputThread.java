@@ -82,16 +82,18 @@ public class InputThread extends Thread{
                 out.println(json);
             } catch (IOException e) {
                 e.printStackTrace();
-                break;
-            } finally {
                 try {
+                    if(bot.isAlive()){
+                        bot.interrupt();
+                    }
                     socket.close();
                     out.close();
                     br.close();
-                }catch(IOException e){
-                    e.printStackTrace();
+                }catch(IOException err){
+                    err.printStackTrace();
                     System.exit(1);
                 }
+                break;
             }
         }
     }
