@@ -39,22 +39,25 @@ public class Bot extends Thread{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        while(!this.isInterrupted()){
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                out.close();
-                break;
+        try {
+            while (!this.isInterrupted()) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    out.close();
+                    throw e;
+                }
+                command = randomCommand();
+                if (command.isEmpty() || command.isBlank()) {
+                    System.out.println("[Bot] Invalid Command.");
+                    continue;
+                }
+                System.out.println("[Bot] " + command);
+                json = jsonUtil.generateJson(command);
+                out.println(json);
             }
-            command = randomCommand();
-            if(command.isEmpty() || command.isBlank()){
-                System.out.println("[Bot] Invalid Command.");
-                continue;
-            }
-            System.out.println("[Bot] " + command);
-            json = jsonUtil.generateJson(command);
-            out.println(json);
+        }catch(InterruptedException e){
+            System.out.printf("[Bot] bot stop - %s\n", e.getMessage());
         }
     }
 
