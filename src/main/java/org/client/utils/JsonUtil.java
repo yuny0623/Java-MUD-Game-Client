@@ -45,6 +45,7 @@ public class JsonUtil {
                 String userName = vals[0];
                 MainClient.userList.add(userName);
             }
+            return userInfo;
         }
         result = (String) jsonObject.get("Notice");
         return result;

@@ -97,7 +97,7 @@ public class BotTest {
     }
 
     @Test
-    @DisplayName("(int) (Math.random() * (최댓값-최소값 + 1)) + 최소값/ 공식 테스트")
+    @DisplayName("(int) (Math.random() * (최댓값-최소값 + 1)) + 최소값 공식 테스트")
     public void random_number_range_test(){
         // given
         int limit = 9;
