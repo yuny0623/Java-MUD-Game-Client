@@ -25,6 +25,14 @@ public class DisplayThread extends Thread {
         return true;
     }
 
+    public boolean isValidParsedJson(String parsedJson){
+        if(parsedJson == null || parsedJson.isEmpty() || parsedJson.isBlank()){
+            System.out.println("[Error] parsing json error.");
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void run(){
         try {
@@ -32,6 +40,7 @@ public class DisplayThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         while(true){
             try {
                 strIn = in.readLine();
@@ -43,11 +52,7 @@ public class DisplayThread extends Thread {
 
                 parsedJson = JsonUtil.parseJson(strIn);
 
-                if(parsedJson==null){
-                    continue;
-                }
-                if(parsedJson.isEmpty() || parsedJson.isBlank()){
-                    System.out.println("[Error] parsing json error.");
+                if(!isValidParsedJson(parsedJson)){
                     continue;
                 }
 
