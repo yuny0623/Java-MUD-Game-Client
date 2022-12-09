@@ -18,6 +18,13 @@ public class DisplayThread extends Thread {
         this.socket = socket;
     }
 
+    public boolean isValidInput(String input){
+        if(input == null || input.isEmpty() || input.isBlank()){
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void run(){
         try {
@@ -28,13 +35,14 @@ public class DisplayThread extends Thread {
         while(true){
             try {
                 strIn = in.readLine();
-                if(strIn == null){
+
+                // 입력 유효성 검사
+                if(!isValidInput(strIn)){
                     continue;
                 }
-                if (strIn.isEmpty() || strIn.isBlank()) {
-                    continue;
-                }
+
                 parsedJson = JsonUtil.parseJson(strIn);
+
                 if(parsedJson==null){
                     continue;
                 }
@@ -42,6 +50,7 @@ public class DisplayThread extends Thread {
                     System.out.println("[Error] parsing json error.");
                     continue;
                 }
+
                 System.out.println("[Notice] " + parsedJson);
             }catch(Exception e){
                 if(e.getMessage().equals("Connection reset")) {
