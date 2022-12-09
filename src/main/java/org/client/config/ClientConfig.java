@@ -1,5 +1,8 @@
 package org.client.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class ClientConfig {
 
     private static ClientConfig instance;

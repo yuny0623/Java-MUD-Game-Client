@@ -50,7 +50,7 @@ public class InputThread extends Thread{
             e.printStackTrace();
         }
 
-        System.out.println("login succeed.");
+        System.out.println("login success.");
 
         // 게임 진행
         while(true){
