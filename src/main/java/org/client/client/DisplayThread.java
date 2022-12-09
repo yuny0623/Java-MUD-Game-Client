@@ -40,7 +40,7 @@ public class DisplayThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         while(true){
             try {
                 strIn = in.readLine();
