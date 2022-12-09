@@ -61,7 +61,7 @@ public class Bot extends Thread{
         String command = "";
         int x;
         int y;
-        int randomCommand = (int) (Math.random() * (4 - 0 + 1)) + 0;
+        int randomCommand = (int) (Math.random() * (6 - 0 + 1)) + 0;
         switch(randomCommand){
             case 0:
                 x = (int) (Math.random() * (4 - (-4) + 1)) + (-4);
@@ -84,6 +84,12 @@ public class Bot extends Thread{
                 }
                 String message = randomMessage();
                 command = "chat " + to + " " + message;
+                break;
+            case 5:
+                command = "potion hp";
+                break;
+            case 6:
+                command = "potion str";
                 break;
         }
         return command;
