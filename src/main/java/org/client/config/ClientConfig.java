@@ -1,4 +1,4 @@
-package org.client.utils;
+package org.client.config;
 
 public final class ClientConfig {
 

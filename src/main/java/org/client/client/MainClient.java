@@ -1,8 +1,7 @@
 package org.client.client;
 
 import org.client.bot.Bot;
-import org.client.utils.ClientConfig;
-import org.client.utils.JsonUtil;
+import org.client.config.ClientConfig;
 
 import java.io.*;
 import java.net.InetAddress;
