@@ -1,7 +1,6 @@
 package org.client.utils;
 
-import org.client.Main;
-import org.client.client.MainClient;
+import org.client.client.Client;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -35,7 +34,7 @@ public final class JsonUtil {
             for(String user: users){
                 String[] vals = user.split(" ");
                 String userName = vals[0];
-                MainClient.userList.add(userName);
+                Client.userList.add(userName);
             }
             return userInfo;
         }

@@ -1,6 +1,6 @@
 package org.client.bot;
 
-import org.client.client.MainClient;
+import org.client.client.Client;
 import org.client.utils.GameUtil;
 import org.client.utils.JsonUtil;
 import java.io.BufferedWriter;
@@ -91,17 +91,17 @@ public class Bot extends Thread{
     }
 
     public String randomUser(){
-        int limit = MainClient.userList.size() - 1;
+        int limit = Client.userList.size() - 1;
         if(limit <= 0)
             return "";
         int i = GameUtil.generateRandomNumber(0, limit);
-        return MainClient.userList.get(i);
+        return Client.userList.get(i);
     }
 
 
     public String randomMessage(){
-        int limit = MainClient.messageList.size() - 1;
+        int limit = Client.messageList.size() - 1;
         int i = GameUtil.generateRandomNumber(0, limit);
-        return MainClient.messageList.get(i);
+        return Client.messageList.get(i);
     }
 }

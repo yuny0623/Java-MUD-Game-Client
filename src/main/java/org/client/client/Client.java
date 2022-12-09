@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainClient{
+public class Client {
     String ip;
     int port;
     Socket socket;
@@ -19,7 +19,7 @@ public class MainClient{
     public static List<String> userList = new ArrayList<>();
     public static List<String> messageList = new ArrayList<>();
 
-    public MainClient(){
+    public Client(){
         try {
             InetAddress ia = InetAddress.getLocalHost();
             String ipStr = ia.toString();

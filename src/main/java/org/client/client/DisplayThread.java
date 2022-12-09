@@ -51,9 +51,9 @@ public class DisplayThread extends Thread {
                     System.out.println(e.getMessage());
                 }
                 System.out.println("Exit Client.");
-                if(MainClient.bot != null) {
+                if(Client.bot != null) {
                     System.out.println("Exit Bot.");
-                    MainClient.bot.interrupt();
+                    Client.bot.interrupt();
                 }
                 try {
                     socket.close();
