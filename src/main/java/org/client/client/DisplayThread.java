@@ -12,16 +12,30 @@ public class DisplayThread extends Thread {
     Socket socket;
     String strIn;
     BufferedReader in;
-    JsonUtil jsonUtil;
+    String parsedJson;
 
     public DisplayThread(Socket socket){
         this.socket = socket;
     }
 
+    public boolean isValidInput(String input){
+        if(input == null || input.isEmpty() || input.isBlank()){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isValidParsedJson(String parsedJson){
+        if(parsedJson == null || parsedJson.isEmpty() || parsedJson.isBlank()){
+            System.out.println("[Error] parsing json error.");
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void run(){
         try {
-            jsonUtil = JsonUtil.getInstance();
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -30,12 +44,38 @@ public class DisplayThread extends Thread {
         while(true){
             try {
                 strIn = in.readLine();
-                if (strIn.isEmpty() || strIn.isBlank()) {
+
+                // 입력 유효성 검사
+                if(!isValidInput(strIn)){
                     continue;
                 }
-                System.out.println("[Notice] " + jsonUtil.parseJson(strIn));
+
+                parsedJson = JsonUtil.parseJson(strIn);
+
+                if(!isValidParsedJson(parsedJson)){
+                    continue;
+                }
+
+                System.out.println("[Notice] " + parsedJson);
             }catch(Exception e){
-                e.printStackTrace();
+                if(e.getMessage().equals("Connection reset")) {
+                    System.out.println("[Error] Socket - " + e.getMessage());
+                    System.out.println("Server is not running...");
+                }else{
+                    System.out.println(e.getMessage());
+                }
+                System.out.println("Exit Client.");
+                if(Client.bot != null) {
+                    System.out.println("Exit Bot.");
+                    Client.bot.interrupt();
+                }
+                try {
+                    socket.close();
+                    in.close();
+                }catch(IOException err){
+                    err.printStackTrace();
+                    break;
+                }
                 break;
             }
         }

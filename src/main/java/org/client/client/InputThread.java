@@ -2,7 +2,6 @@ package org.client.client;
 
 import org.client.bot.Bot;
 import org.client.utils.JsonUtil;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -12,9 +11,8 @@ public class InputThread extends Thread{
     BufferedReader br;
     String clientInput;
     String json;
-    JsonUtil jsonUtil;
     String nickname;
-    boolean botFlag;
+
     Bot bot;
 
     public InputThread(Socket socket){
@@ -26,7 +24,6 @@ public class InputThread extends Thread{
         try {
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
             br = new BufferedReader(new InputStreamReader(System.in));
-            jsonUtil = JsonUtil.getInstance();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,18 +35,19 @@ public class InputThread extends Thread{
             while(true){
                 if(nickname.isBlank() || nickname.isEmpty()){
                     System.out.println("Empty nickname.");
-                    System.out.println("Type nickname:");
+                    System.out.println("Type nickname again:");
                     nickname = br.readLine();
                 }else{
                     break;
                 }
             }
             System.out.println("login as " + nickname);
-            out.println(jsonUtil.generateJson("nickname " + nickname));
+            out.println(JsonUtil.generateJson("nickname " + nickname));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("login succeed.");
+
+        System.out.println("login success.");
 
         // 게임 진행
         while(true){
@@ -57,22 +55,25 @@ public class InputThread extends Thread{
                 clientInput = br.readLine();
 
                 if(clientInput.equals("bot")){
+                    System.out.println("Start Bot mode.");
                     bot = new Bot(socket, nickname);
                     bot.start();
-                    json = jsonUtil.generateJson("bot");
+                    Client.bot = bot;
+                    json = JsonUtil.generateJson("bot");
                     out.println(json);
-                    System.out.println("Bot mode start.");
                     clientInput = null;
                     continue;
                 }
                 if(clientInput.equals("exit bot")){
-                    bot.stopFlag = true;
-                    out.println(jsonUtil.generateJson("exit bot"));
+                    bot.interrupt();
+                    Client.bot = null;
+                    json = JsonUtil.generateJson("exit bot");
+                    out.println(json);
                     System.out.println("Bot mode stop.");
                     clientInput = null;
                     continue;
                 }
-                json = jsonUtil.generateJson(clientInput);
+                json = JsonUtil.generateJson(clientInput);
                 if(json.isEmpty() || json.isBlank()){
                     System.out.println("Invalid Command.");
                     continue;
@@ -80,6 +81,17 @@ public class InputThread extends Thread{
                 out.println(json);
             } catch (IOException e) {
                 e.printStackTrace();
+                try {
+                    if(bot.isAlive()){
+                        bot.interrupt();
+                    }
+                    socket.close();
+                    out.close();
+                    br.close();
+                }catch(IOException err){
+                    err.printStackTrace();
+                    System.exit(1);
+                }
                 break;
             }
         }

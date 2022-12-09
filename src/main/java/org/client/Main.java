@@ -1,10 +1,10 @@
 package org.client;
 
-import org.client.client.MainClient;
+import org.client.client.Client;
 
 public class Main {
     public static void main(String[] args) {
-        MainClient mainClient = new MainClient();
-        mainClient.start();
+        Client client = new Client();
+        client.start();
     }
 }

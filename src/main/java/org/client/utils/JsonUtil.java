@@ -1,23 +1,48 @@
 package org.client.utils;
 
+import org.client.client.Client;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class JsonUtil {
-    private static JsonUtil instance;
-
+public final class JsonUtil {
     private JsonUtil(){
 
     }
-    public static JsonUtil getInstance(){
-        if(instance == null){
-            instance = new JsonUtil();
+
+    public static synchronized String parseJson(String json){
+        String result = "";
+        if(json.isEmpty() || json.isBlank()){
+            System.out.println("Invalid received json");
+            return result;
         }
-        return instance;
+        JSONObject jsonObject;
+        JSONParser parser = new JSONParser();
+        try {
+            jsonObject = (JSONObject) parser.parse(json);
+        }catch(ParseException e){
+            e.printStackTrace();
+            return result;
+        }
+        String monsterInfo = (String) jsonObject.get("MonsterInfo");
+        if(monsterInfo!= null){
+            return monsterInfo;
+        }
+        String userInfo = (String) jsonObject.get("UserInfo");
+        if(userInfo != null){
+            String[] users = userInfo.split("\n");
+            for(String user: users){
+                String[] vals = user.split(" ");
+                String userName = vals[0];
+                Client.userList.add(userName);
+            }
+            return userInfo;
+        }
+        result = (String) jsonObject.get("Notice");
+        return result;
     }
 
-    public String generateJson(String action){
+    public static synchronized String generateJson(String action){
         if(action.isEmpty() || action ==  null){
             return "";
         }
@@ -26,15 +51,31 @@ public class JsonUtil {
         String command = inputs[0];
         String result = "";
         switch(command){
+            case "nickname":
+                String nickname = inputs[1];
+                jsonObject.put("command", "nickname");
+                jsonObject.put("nickname", nickname);
+                result = jsonObject.toJSONString();
+                break;
             case "move":
                 if(inputs.length != 3){
                     break;
                 }
-                String x_val = inputs[1];
-                String y_val = inputs[2];
+                int xVal = Integer.parseInt(inputs[1]);
+                int yVal = Integer.parseInt(inputs[2]);
+                if(xVal < -3){
+                    xVal = -3;
+                }else if(xVal > 3){
+                    xVal = 3;
+                }
+                if(yVal < -3){
+                    yVal = -3;
+                }else if(yVal > 3){
+                    yVal = 3;
+                }
                 jsonObject.put("command", "move");
-                jsonObject.put("x", x_val);
-                jsonObject.put("y", y_val);
+                jsonObject.put("x", String.valueOf(xVal));
+                jsonObject.put("y", String.valueOf(yVal));
                 result = jsonObject.toJSONString();
                 break;
             case "attack":
@@ -64,33 +105,16 @@ public class JsonUtil {
                 jsonObject.put("command","bot");
                 result = jsonObject.toJSONString();
                 break;
-            case "nickname":
-                String nickname = inputs[1];
-                jsonObject.put("command", "nickname");
-                jsonObject.put("nickname", nickname);
+            case "exit":
+                jsonObject.put("command", "exit bot");
                 result = jsonObject.toJSONString();
                 break;
-            case "exit":
-                return "exit";
+            case "potion":
+                String item = inputs[1];
+                jsonObject.put("command", "potion");
+                jsonObject.put("item", item);
+                result = jsonObject.toJSONString();
         }
-        return result;
-    }
-
-    public String parseJson(String json){
-        String result = "";
-        if(json.isEmpty() || json.isBlank()){
-            System.out.println("Invalid received json");
-            return result;
-        }
-        JSONObject jsonObject = new JSONObject();
-        JSONParser parser = new JSONParser();
-        try {
-            jsonObject = (JSONObject) parser.parse(json);
-        }catch(ParseException e){
-            e.printStackTrace();
-            return result;
-        }
-        result = (String) jsonObject.get("Notice");
         return result;
     }
 }
