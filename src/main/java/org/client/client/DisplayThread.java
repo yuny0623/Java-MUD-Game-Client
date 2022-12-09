@@ -28,6 +28,9 @@ public class DisplayThread extends Thread {
         while(true){
             try {
                 strIn = in.readLine();
+                if(strIn == null){
+                    continue;
+                }
                 if (strIn.isEmpty() || strIn.isBlank()) {
                     continue;
                 }
