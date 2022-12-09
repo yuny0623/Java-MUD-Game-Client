@@ -19,15 +19,6 @@ public class MainClient{
     public static List<String> userList = new ArrayList<>();
     public static List<String> messageList = new ArrayList<>();
 
-    String gameLogo = "\n" +
-            ".___  ___.  __    __   _______       _______      ___      .___  ___.  _______ \n" +
-            "|   \\/   | |  |  |  | |       \\     /  _____|    /   \\     |   \\/   | |   ____|\n" +
-            "|  \\  /  | |  |  |  | |  .--.  |   |  |  __     /  ^  \\    |  \\  /  | |  |__   \n" +
-            "|  |\\/|  | |  |  |  | |  |  |  |   |  | |_ |   /  /_\\  \\   |  |\\/|  | |   __|  \n" +
-            "|  |  |  | |  `--'  | |  '--'  |   |  |__| |  /  _____  \\  |  |  |  | |  |____ \n" +
-            "|__|  |__|  \\______/  |_______/     \\______| /__/     \\__\\ |__|  |__| |_______|\n" +
-            "                                                                               \n";
-
     public MainClient(){
         try {
             InetAddress ia = InetAddress.getLocalHost();
@@ -52,18 +43,8 @@ public class MainClient{
     }
 
     public void printLogs(){
-        System.out.println(gameLogo);
-        System.out.println("***************COMMAND LIST****************");
-        System.out.println("*              move x y                   *");
-        System.out.println("*              attack                     *");
-        System.out.println("*              monsters                   *");
-        System.out.println("*              users                      *");
-        System.out.println("*              chat <username> <content>  *");
-        System.out.println("*              bot                        *");
-        System.out.println("*              exit bot                   *");
-        System.out.println("*              potion hp                  *");
-        System.out.println("*              potion str                 *");
-        System.out.println("*******************************************");
+        System.out.println(ClientConfig.GAME_LOGO);
+        System.out.println(ClientConfig.COMMAND_LIST);
     }
 
     public void initThreads(Socket socket){
