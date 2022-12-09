@@ -1,18 +1,13 @@
 package org.client.bot;
 
-import org.client.Main;
-import org.client.client.InputThread;
 import org.client.client.MainClient;
+import org.client.utils.GameUtil;
 import org.client.utils.JsonUtil;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Bot extends Thread{
 
@@ -61,11 +56,11 @@ public class Bot extends Thread{
         String command = "";
         int x;
         int y;
-        int randomCommand = (int) (Math.random() * (6 - 0 + 1)) + 0;
+        int randomCommand = GameUtil.generateRandomNumber(0, 6);
         switch(randomCommand){
             case 0:
-                x = (int) (Math.random() * (4 - (-4) + 1)) + (-4);
-                y = (int) (Math.random() * (4 - (-4) + 1)) + (-4);
+                x = GameUtil.generateRandomNumber(-4, 4);
+                y = GameUtil.generateRandomNumber(-4, 4);
                 command = "move " + x + " " + y;
                 break;
             case 1:
@@ -99,14 +94,14 @@ public class Bot extends Thread{
         int limit = MainClient.userList.size() - 1;
         if(limit <= 0)
             return "";
-        int i = (int) (Math.random() * (limit - 0 + 1)) + (0);
+        int i = GameUtil.generateRandomNumber(0, limit);
         return MainClient.userList.get(i);
     }
 
 
     public String randomMessage(){
         int limit = MainClient.messageList.size() - 1;
-        int i = (int) (Math.random() * (limit - 0 + 1)) + (0);
+        int i = GameUtil.generateRandomNumber(0, limit);
         return MainClient.messageList.get(i);
     }
 }

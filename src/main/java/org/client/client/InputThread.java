@@ -2,11 +2,8 @@ package org.client.client;
 
 import org.client.bot.Bot;
 import org.client.utils.JsonUtil;
-
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InputThread extends Thread{
     Socket socket;
