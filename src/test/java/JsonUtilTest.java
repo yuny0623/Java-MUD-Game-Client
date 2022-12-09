@@ -28,10 +28,16 @@ public class JsonUtilTest {
     @DisplayName("json 생성 기능 테스트")
     public void json_generation_test(){
         // given
+        String json = JsonUtil.generateJson("move 1 2");
 
         // when
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("command", "move");
+        jsonObject.put("x", "1");
+        jsonObject.put("y", "2");
+        String generatedJson = jsonObject.toJSONString();
 
         // then
-
+        Assert.assertEquals(generatedJson, json);
     }
 }
