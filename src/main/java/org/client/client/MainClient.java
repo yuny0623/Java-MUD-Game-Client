@@ -34,12 +34,16 @@ public class MainClient{
         printLogs();
         initNet(ip, port);
         initThreads(socket);
+        initMessageList();
+    }
 
+    public void initMessageList(){
         messageList.add("hi");
         messageList.add("bye");
         messageList.add("good");
         messageList.add("bad");
         messageList.add("gg");
+        messageList.add("nice play");
     }
 
     public void printLogs(){

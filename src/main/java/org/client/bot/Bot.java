@@ -22,8 +22,6 @@ public class Bot extends Thread{
     String command;
     String json;
 
-
-
     public Bot(Socket socket, String nickname){
         System.out.println("Create Bot.");
         this.socket = socket;
