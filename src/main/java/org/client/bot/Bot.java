@@ -19,7 +19,6 @@ public class Bot extends Thread{
     String nickname;
     Socket socket;
     PrintWriter out;
-    JsonUtil jsonUtil;
     String command;
     String json;
 
@@ -35,7 +34,6 @@ public class Bot extends Thread{
     public void run(){
         try {
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-            jsonUtil = JsonUtil.getInstance();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -53,7 +51,7 @@ public class Bot extends Thread{
                     continue;
                 }
                 System.out.println("[Bot] " + command);
-                json = jsonUtil.generateJson(command);
+                json = JsonUtil.generateJson(command);
                 out.println(json);
             }
         }catch(InterruptedException e){

@@ -1,3 +1,4 @@
+import org.client.utils.JsonUtil;
 import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,5 +22,16 @@ public class JsonUtilTest {
 
         // then
         Assert.assertEquals(json, resultJson);
+    }
+
+    @Test
+    @DisplayName("json 생성 기능 테스트")
+    public void json_generation_test(){
+        // given
+
+        // when
+
+        // then
+
     }
 }

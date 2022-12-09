@@ -12,7 +12,6 @@ public class DisplayThread extends Thread {
     Socket socket;
     String strIn;
     BufferedReader in;
-    JsonUtil jsonUtil;
     String parsedJson;
 
     public DisplayThread(Socket socket){
@@ -22,7 +21,6 @@ public class DisplayThread extends Thread {
     @Override
     public void run(){
         try {
-            jsonUtil = JsonUtil.getInstance();
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,7 +31,7 @@ public class DisplayThread extends Thread {
                 if (strIn.isEmpty() || strIn.isBlank()) {
                     continue;
                 }
-                parsedJson = jsonUtil.parseJson(strIn);
+                parsedJson = JsonUtil.parseJson(strIn);
                 if(parsedJson==null){
                     continue;
                 }

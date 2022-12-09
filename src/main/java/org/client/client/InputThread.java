@@ -14,7 +14,6 @@ public class InputThread extends Thread{
     BufferedReader br;
     String clientInput;
     String json;
-    JsonUtil jsonUtil;
     String nickname;
 
     Bot bot;
@@ -28,7 +27,6 @@ public class InputThread extends Thread{
         try {
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
             br = new BufferedReader(new InputStreamReader(System.in));
-            jsonUtil = JsonUtil.getInstance();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +45,7 @@ public class InputThread extends Thread{
                 }
             }
             System.out.println("login as " + nickname);
-            out.println(jsonUtil.generateJson("nickname " + nickname));
+            out.println(JsonUtil.generateJson("nickname " + nickname));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,7 +62,7 @@ public class InputThread extends Thread{
                     bot = new Bot(socket, nickname);
                     bot.start();
                     MainClient.bot = bot;
-                    json = jsonUtil.generateJson("bot");
+                    json = JsonUtil.generateJson("bot");
                     out.println(json);
                     clientInput = null;
                     continue;
@@ -72,13 +70,13 @@ public class InputThread extends Thread{
                 if(clientInput.equals("exit bot")){
                     bot.interrupt();
                     MainClient.bot = null;
-                    json = jsonUtil.generateJson("exit bot");
+                    json = JsonUtil.generateJson("exit bot");
                     out.println(json);
                     System.out.println("Bot mode stop.");
                     clientInput = null;
                     continue;
                 }
-                json = jsonUtil.generateJson(clientInput);
+                json = JsonUtil.generateJson(clientInput);
                 if(json.isEmpty() || json.isBlank()){
                     System.out.println("Invalid Command.");
                     continue;
