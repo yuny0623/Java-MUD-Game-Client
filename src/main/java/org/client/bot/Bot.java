@@ -59,8 +59,8 @@ public class Bot extends Thread{
         int randomCommand = GameUtil.generateRandomNumber(0, 6);
         switch(randomCommand){
             case 0:
-                x = GameUtil.generateRandomNumber(-4, 4);
-                y = GameUtil.generateRandomNumber(-4, 4);
+                x = GameUtil.generateRandomNumber(-3, 3);
+                y = GameUtil.generateRandomNumber(-3, 3);
                 command = "move " + x + " " + y;
                 break;
             case 1:

@@ -13,7 +13,7 @@ public final class JsonUtil {
     public static synchronized String parseJson(String json){
         String result = "";
         if(json.isEmpty() || json.isBlank()){
-            System.out.println("Invalid received json");
+            System.out.println("Invalid receive json.");
             return result;
         }
         JSONObject jsonObject;
