@@ -1,4 +1,4 @@
-# ⭐ Java MUD Game Project - Client
+# 🎮 Java MUD Game Project - Client
 
 ## 🍀 Project Intro
 ```
