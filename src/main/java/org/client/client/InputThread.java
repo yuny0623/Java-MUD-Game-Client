@@ -28,7 +28,7 @@ public class InputThread extends Thread{
             e.printStackTrace();
         }
 
-        // 로그인 진행
+        // login process
         try {
             System.out.println("Type nickname:");
             nickname = br.readLine();

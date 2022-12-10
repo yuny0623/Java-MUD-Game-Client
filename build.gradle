@@ -17,6 +17,14 @@ dependencies {
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.client.Main'
+        )
+    }
+}
+
 test {
     useJUnitPlatform()
 }

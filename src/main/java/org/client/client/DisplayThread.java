@@ -45,7 +45,7 @@ public class DisplayThread extends Thread {
             try {
                 strIn = in.readLine();
 
-                // 입력 유효성 검사
+                // input validation check
                 if(!isValidInput(strIn)){
                     continue;
                 }
