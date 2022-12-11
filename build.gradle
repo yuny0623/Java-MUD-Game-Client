@@ -23,6 +23,7 @@ jar {
                 'Main-Class': 'org.client.Main'
         )
     }
+    enabled=false
 }
 
 test {

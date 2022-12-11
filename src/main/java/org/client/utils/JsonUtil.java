@@ -20,7 +20,7 @@ public final class JsonUtil {
         JSONParser parser = new JSONParser();
         try {
             jsonObject = (JSONObject) parser.parse(json);
-        }catch(ParseException e){
+        }catch(Exception e){
             e.printStackTrace();
             return result;
         }
