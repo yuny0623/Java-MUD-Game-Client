@@ -93,6 +93,15 @@
     2️⃣ *.jar 파일 실행 
 ```
 
+## 🔗 Game Client Download
+```
+🚦 Notice 
+    1️⃣ Java 17 권장
+    2️⃣ java -jar game-client.jar 
+```
+> [Game Client Download](https://drive.google.com/file/d/1yLRhDkD3D-sUPSff0NpZMwzH29K51Toe/view?usp=share_link)
+
+
 ## 📲 Tech
 ```
 ⛵ Java 17
